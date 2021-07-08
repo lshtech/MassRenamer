@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="wayhome.MassRenamer.Views.FileList"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:views="clr-namespace:wayhome.MassRenamer.Views" xmlns:viewmodel="clr-namespace:wayhome.MassRenamer.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:RenameViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="25"/>
+      <ColumnDefinition Width="100" x:Name="FileListColumn"/>
+      <ColumnDefinition Width="5" x:Name="FileListSplitter"/>
+      <ColumnDefinition Width="*"/>
+    </Grid.ColumnDefinitions>
+    <Expander Grid.Column="0" Margin="-1,-1,-1,0" Padding="2,2,0,2" ExpandDirection="Down" FlowDirection="LeftToRight" Height="26" IsExpanded="True"
+               Background="{x:Static SystemColors.MenuBrush}" HorizontalAlignment="Right" Collapsed="Expander_Collapsed" Expanded="Expander_Expanded" 
+               BorderBrush="{DynamicResource PanelBackgroundBrush}" BorderThickness="0,1,0,0" x:Name="FileListExpander" >
+      <Expander.Header>
+        <TextBlock Margin="2,0,0,2" Text ="File List"/>
+      </Expander.Header>
+      <Expander.LayoutTransform>
+        <RotateTransform Angle="-90"></RotateTransform>
+      </Expander.LayoutTransform>
+    </Expander>
+
+    <ListView Grid.Column="1" BorderBrush="#FF828790" BorderThickness="1,1,1,0" x:Name="ListViewFileNames" 
+              FontFamily="Lucida Console" ItemsSource="{Binding Path=FileListDict.Keys}" />
+    <GridSplitter Grid.Column="2" HorizontalAlignment="Stretch" Style="{StaticResource GridSplitterStyle}" DragCompleted="GridSplitter_DragCompleted" MouseDoubleClick="GridSplitter_MouseDoubleClick" />
+
+    <views:MultiLineTextBox Grid.Column="3" BorderBrush="#FF828790" BorderThickness="1,1,1,0" />
+  </Grid>
+</UserControl>
